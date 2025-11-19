@@ -1,0 +1,11 @@
+build:
+	docker build -t practica3_tts .
+
+run_xtts:
+	docker run --rm -v ${PWD}/audio:/app/audio practica3_tts python src/generar_xtts.py
+
+run_bark:
+	docker run --rm -v ${PWD}/audio:/app/audio practica3_tts python src/generar_bark.py
+
+evaluate:
+	docker run --rm -v ${PWD}/audio:/app/audio practica3_tts python src/evaluar.py

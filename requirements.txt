@@ -1,0 +1,9 @@
+TTS
+suno-bark
+numpy
+soundfile
+scipy
+speechbrain
+torch
+torchaudio
+pydub
