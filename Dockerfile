@@ -1,5 +1,5 @@
 # Imagen base con Python 3.10
-FROM python:3.10-slim
+FROM --platform=linux/amd64 python:3.10-slim
 
 # Evitar interacciones en la instalación
 ENV DEBIAN_FRONTEND=noninteractive

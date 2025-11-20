@@ -5,7 +5,7 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 run:
-	docker run -it --name $(CONTAINER_NAME) -v $$(pwd):/app $(IMAGE_NAME)
+	docker run -it --name $(CONTAINER_NAME) -v "$$(pwd)":/app $(IMAGE_NAME)
 
 clean:
 	docker rm -f $(CONTAINER_NAME) || true

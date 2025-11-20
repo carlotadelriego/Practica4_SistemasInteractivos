@@ -1,9 +1,9 @@
-TTS==0.22.0
-torch==2.1.2
-torchaudio==2.1.2
+numpy==1.22.0
+TTS==0.21.3
+torch==2.1.0
+torchaudio==2.1.0
+transformers==4.33.0
 speechbrain
 resemblyzer
 soundfile
 librosa
-numpy==1.23.5
-transformers==4.31.0
