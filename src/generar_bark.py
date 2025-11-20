@@ -1,4 +1,4 @@
-from bark import SAMPLE_RATE, generate_audio, preload_models
+from suno_bark import SAMPLE_RATE, generate_audio, preload_models
 from scipy.io.wavfile import write
 import numpy as np
 
@@ -18,4 +18,4 @@ audio = generate_audio(
 audio_np = np.array(audio)
 write("audio/output_bark.wav", SAMPLE_RATE, audio_np)
 
-print("Audio generado y guardado como audio/output_bark.wav")
+print("✔ Audio generado y guardado como audio/output_bark.wav")
