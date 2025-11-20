@@ -1,29 +1,30 @@
+# Imagen base con Python 3.10
 FROM python:3.10-slim
 
-# Evitar problemas con locales
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITEBYTECODE=1
+# Evitar interacciones en la instalación
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     ffmpeg \
+    libsndfile1 \
     git \
-    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear directorio de trabajo
+# Crear carpeta de trabajo
 WORKDIR /app
 
-# Copiar requirements
+# Copiar requirements antes para aprovechar cache
 COPY requirements.txt .
 
-# Instalar dependencias Python
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Instalar dependencias de Python
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar código
-COPY src/ ./src/
-COPY audio/ ./audio/
+# Copiar todo el proyecto
+COPY . .
 
-# Comando por defecto
-CMD ["python", "src/generar_xtts.py"]
+# Crear carpetas si no existen
+RUN mkdir -p audio
+
+# Comando por defecto (puede cambiarse con make run)
+CMD ["bash"]

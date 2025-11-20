@@ -1,9 +1,9 @@
-TTS
-suno-bark
-numpy
-soundfile
-scipy
+TTS==0.22.0
+torch==2.1.2
+torchaudio==2.1.2
 speechbrain
-torch
-torchaudio
-pydub
+resemblyzer
+soundfile
+librosa
+numpy==1.23.5
+transformers==4.31.0

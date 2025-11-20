@@ -1,11 +1,12 @@
+IMAGE_NAME=tts-practica
+CONTAINER_NAME=tts-container
+
 build:
-	docker build -t practica3_tts .
+	docker build -t $(IMAGE_NAME) .
 
-run_xtts:
-	docker run --rm -v ${PWD}/audio:/app/audio practica3_tts python src/generar_xtts.py
+run:
+	docker run -it --name $(CONTAINER_NAME) -v $$(pwd):/app $(IMAGE_NAME)
 
-run_bark:
-	docker run --rm -v ${PWD}/audio:/app/audio practica3_tts python src/generar_bark.py
-
-evaluate:
-	docker run --rm -v ${PWD}/audio:/app/audio practica3_tts python src/evaluar.py
+clean:
+	docker rm -f $(CONTAINER_NAME) || true
+	docker rmi -f $(IMAGE_NAME) || true
