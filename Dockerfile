@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     libsndfile1 \
     git \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
-
 # Crear carpeta de trabajo
 WORKDIR /app
 
