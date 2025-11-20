@@ -6,7 +6,7 @@ audio_referencia = "audio/audio_original.wav"
 
 tts = TTS("tts_models/multilingual/multi-dataset/your_tts")
 
-# OJO: language="en" aunque el texto esté en español
+# language = "en" aunque el texto esté en español
 audio = tts.tts(
     text=texto,
     speaker_wav=audio_referencia,

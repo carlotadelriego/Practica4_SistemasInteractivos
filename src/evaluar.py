@@ -5,20 +5,19 @@ from resemblyzer import VoiceEncoder, preprocess_wav
 from pathlib import Path
 import numpy as np
 
-# Rutas
+# Rutas de los audios
 orig = "audio/audio_original.wav"
 xtts = "audio/output_xtts.wav"
 yourtts = "audio/output_yourtts.wav"
 
-print("\n=== CARGANDO AUDIOS ===")
+print("\n CARGANDO AUDIOS")
 print("Origen:", orig)
 print("XTTS:", xtts)
 print("YourTTS:", yourtts)
 
-# ---------------------------
+
 # MÉTRICA 1: ECAPA-TDNN
-# ---------------------------
-print("\n=== MÉTRICA 1: ECAPA-TDNN (SpeechBrain) ===")
+print("\nMÉTRICA 1: ECAPA-TDNN (SpeechBrain)")
 
 spkrec = SpeakerRecognition.from_hparams(
     source="speechbrain/spkrec-ecapa-voxceleb",
@@ -35,10 +34,10 @@ sim_your_ecapa = ecapa_similarity(orig, yourtts)
 print(f"ECAPA - Similitud Origen vs XTTS:     {sim_xtts_ecapa:.4f}")
 print(f"ECAPA - Similitud Origen vs YourTTS: {sim_your_ecapa:.4f}")
 
-# ---------------------------
+
+
 # MÉTRICA 2: RESEMBLYZER
-# ---------------------------
-print("\n=== MÉTRICA 2: Resemblyzer (Cosine Similarity) ===")
+print("\nMÉTRICA 2: Resemblyzer (Cosine Similarity)")
 
 encoder = VoiceEncoder()
 
@@ -59,4 +58,4 @@ sim_your_res = cosine(emb_orig, emb_your)
 print(f"Resemblyzer - Similitud Origen vs XTTS:     {sim_xtts_res:.4f}")
 print(f"Resemblyzer - Similitud Origen vs YourTTS: {sim_your_res:.4f}")
 
-print("\n=== EVALUACIÓN FINAL COMPLETADA ===\n")
+print("\n EVALUACIÓN COMPLETADA \n")

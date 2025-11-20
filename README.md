@@ -1,34 +1,60 @@
-# Practica4_SistemasInteractivos# Practica4_SistemasInteractivos
+# Práctica 3 — Zero-Shot Voice Cloning (Sistemas Interactivos Inteligentes)
 
-## Requisitos
-- Mac con chip Apple (M1/M2/M3). Recomendado ejecutar localmente para usar MPS.
-- Python 3.11
-- ffmpeg instalado (brew install ffmpeg)
+Esta práctica implementa un sistema de clonación de voz *zero-shot* utilizando distintos modelos TTS, y evaluando sus resultados mediante métricas objetivas y análisis subjetivo.  
 
-## Pasos rápidos (local)
-1. Crear entorno e instalar deps: 
-python3 -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
+---
 
-2. Normalizar audio:
-make norm
-
-3. Generar con Bark:
-make bark
-
-4. Generar con Tortoise:
-make tortoise
-
-5. Evaluar métricas:
-make metrics
-
-6. Los resultados se guardan en `outputs/` y las métricas en `outputs/metrics.csv`.
-
-## Notas sobre Mac M3 (MPS)
-Los scripts detectan MPS si `torch.backends.mps.is_available()`. Asegúrate de instalar la versión de PyTorch compatible con MPS en tu entorno.
-
-## Docker
-Incluido Dockerfile por requisitos de entrega. Ten en cuenta que Docker en macOS no proporciona MPS, por lo que los contenedores serán CPU-only.
+## Estructura del proyecto
+PRACTICA4/
+│
+├── audio/
+│ ├── audio_original.wav
+│ ├── leyendas_15_becquer.mp3
+│ ├── output_xtts.wav
+│ ├── output_yourtts.wav
+│ └── extraer_snipped.py
+│
+├── src/
+│ ├── generar_xtts.py
+│ ├── generar_yourtts.py
+│ └── evaluar.py
+│
+├── Dockerfile
+├── Makefile
+├── requirements.txt
+├── README.md
+└── memoria.pdf
 
 
+---
+
+## Instalación y ejecución con Docker
+
+### 1. Construir la imagen:
+bash
+make build
+
+### 2. Ejecutar el contenedor:
+make run
+
+---
+
+## Generación de audio
+
+Dentro del contenedor
+1. Generar con XTTS: python src/generar_xtts.py
+2. Generar con YourTTS: python src/generar_yourtts.py
+
+---
+
+## Evaluación de resultados
+
+El script compara audio original con audios clonados mediante: ECAPA-TDNN (SpeechBrain), Resemblyzer (cosine similarity)
+
+Para obtener los resultados de la evaluación se ejecuta: python src/evaluar.py
+
+---
+
+## Dependencias
+
+Están definidas en requirements.txt para ser instaladas automáticamente por Docker.
